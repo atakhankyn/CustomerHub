@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "CustomerHub.Domain/1.0.0": {
+        "runtime": {
+          "CustomerHub.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CustomerHub.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

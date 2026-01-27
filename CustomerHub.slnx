@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CustomerHub.Application/CustomerHub.Application.csproj" />
+    <Project Path="src/CustomerHub.Domain/CustomerHub.Domain.csproj" />
+    <Project Path="src/CustomerHub.Web/CustomerHub.Web.csproj" />
+  </Folder>
+</Solution>
