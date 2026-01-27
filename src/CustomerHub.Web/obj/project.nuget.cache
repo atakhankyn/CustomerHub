@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g8dU0wqjiyY=",
+  "dgSpecHash": "kuqzgaqP6Jg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\_CustomerHubProject\\src\\CustomerHub.Web\\CustomerHub.Web.csproj",
+  "projectFilePath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\CustomerHub\\src\\CustomerHub.Web\\CustomerHub.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\denem\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\denem\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",

@@ -10,3 +10,15 @@ C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\_CustomerHubProject\src\CustomerH
 C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\_CustomerHubProject\src\CustomerHub.Domain\obj\Debug\net10.0\refint\CustomerHub.Domain.dll
 C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\_CustomerHubProject\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.pdb
 C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\_CustomerHubProject\src\CustomerHub.Domain\obj\Debug\net10.0\ref\CustomerHub.Domain.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\bin\Debug\net10.0\CustomerHub.Domain.deps.json
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\bin\Debug\net10.0\CustomerHub.Domain.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\bin\Debug\net10.0\CustomerHub.Domain.pdb
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.AssemblyInfoInputs.cache
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.AssemblyInfo.cs
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.csproj.CoreCompileInputs.cache
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.sourcelink.json
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\refint\CustomerHub.Domain.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\CustomerHub.Domain.pdb
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Domain\obj\Debug\net10.0\ref\CustomerHub.Domain.dll

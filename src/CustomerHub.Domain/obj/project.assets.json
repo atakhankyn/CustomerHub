@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\_CustomerHubProject\\src\\CustomerHub.Domain\\CustomerHub.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\CustomerHub\\src\\CustomerHub.Domain\\CustomerHub.Domain.csproj",
       "projectName": "CustomerHub.Domain",
-      "projectPath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\_CustomerHubProject\\src\\CustomerHub.Domain\\CustomerHub.Domain.csproj",
+      "projectPath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\CustomerHub\\src\\CustomerHub.Domain\\CustomerHub.Domain.csproj",
       "packagesPath": "C:\\Users\\denem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\_CustomerHubProject\\src\\CustomerHub.Domain\\obj\\",
+      "outputPath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\CustomerHub\\src\\CustomerHub.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
