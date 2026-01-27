@@ -1,0 +1,50 @@
+@model CustomerCreateViewModel
+
+@{
+    ViewData["Title"] = "Yeni Müşteri";
+}
+
+<h1>Yeni Müşteri Oluştur</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Type" class="form-label">Müşteri Tipi</label>
+                <select asp-for="Type" asp-items="Html.GetEnumSelectList<CustomerType>()" class="form-select">
+                    <option value="">-- Seçiniz --</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Ad / Firma Adı</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="TCKNOrVKN" class="form-label">TCKN / VKN</label>
+                <input asp-for="TCKNOrVKN" class="form-control" />
+                <span asp-validation-for="TCKNOrVKN" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AddressCity" class="form-label">Şehir</label>
+                <input asp-for="AddressCity" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AddressLine" class="form-label">Adres</label>
+                <textarea asp-for="AddressLine" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>

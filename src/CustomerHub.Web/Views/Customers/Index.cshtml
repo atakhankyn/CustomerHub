@@ -28,8 +28,6 @@ else
                     <th>Tip</th>
                     <th>Durum</th>
                     <th>TCKN/VKN</th>
-                    <th>Email</th>
-                    <th>Telefon</th>
                     <th>İşlemler</th>
                 </tr>
             </thead>
@@ -45,8 +43,6 @@ else
                             </span>
                         </td>
                         <td>@customer.TCKNOrVKN</td>
-                        <td>@(/*customer.Email ?? */ "-")</td>
-                        <td>@(/*customer.Phone ?? */ "-")</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@customer.Id" 
                                class="btn btn-sm btn-info">

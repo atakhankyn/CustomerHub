@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 public enum CustomerType
 {
-    Individual, 
-    Business
+    [Display(Name = "Bireysel")]    Individual, 
+
+    [Display(Name = "Kurumsal")]    Business
 }

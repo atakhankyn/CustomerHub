@@ -24,6 +24,43 @@ public class CustomersController : Controller
         return View(viewModels);
     }
 
+     public IActionResult Create()
+    {
+        return View();
+    } 
+
+    [HttpPost]
+    public async Task<IActionResult> Create(CustomerCreateViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var customer = ToEntity(model);
+        await _repository.AddAsync(customer);
+        return RedirectToAction(nameof(Index));
+
+
+    }
+
+    //Helper Methods
+
+    private Customer ToEntity(CustomerCreateViewModel model)
+    {
+        return new Customer
+        {
+            Id = Guid.NewGuid(),
+            Type = model.Type,
+            Name = model.Name,
+            TCKNOrVKN = model.TCKNOrVKN,
+            AddressCity = model.AddressCity,
+            AddressLine = model.AddressLine,
+            Status = CustomerStatus.Active,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+    }
     private string GetTypeText(CustomerType type)
     {
         switch (type)
