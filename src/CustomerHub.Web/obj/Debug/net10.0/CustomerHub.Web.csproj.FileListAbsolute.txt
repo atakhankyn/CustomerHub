@@ -436,3 +436,7 @@ C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\o
 C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\obj\Debug\net10.0\CustomerHub.Web.pdb
 C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\obj\Debug\net10.0\CustomerHub.Web.genruntimeconfig.cache
 C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\obj\Debug\net10.0\ref\CustomerHub.Web.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\bin\Debug\net10.0\FluentValidation.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\bin\Debug\net10.0\FluentValidation.AspNetCore.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\denem\OneDrive\Masaüstü\Dsmart Staj\CustomerHub\src\CustomerHub.Web\obj\Debug\net10.0\CustomerHub.Web.MvcApplicationPartsAssemblyInfo.cs

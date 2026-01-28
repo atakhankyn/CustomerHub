@@ -110,7 +110,7 @@ public class CustomersController : Controller
 
     private void UpdateEntity(Customer customer,  CustomerEditViewModel model)
     {
-        customer.Type = model.Type;
+        customer.Type = model.Type!.Value;
         customer.Name = model.Name;
         customer.TCKNOrVKN = model.TCKNOrVKN;
         customer.AddressCity = model.AddressCity;
@@ -165,7 +165,7 @@ public class CustomersController : Controller
         return new Customer
         {
             Id = Guid.NewGuid(),
-            Type = model.Type,
+            Type = model.Type!.Value,
             Name = model.Name,
             Email = model.Email,
             Phone = model.Phone,

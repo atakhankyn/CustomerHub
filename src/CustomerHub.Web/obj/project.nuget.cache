@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "kuqzgaqP6Jg=",
+  "dgSpecHash": "7GkQWH7i3Z0=",
   "success": true,
   "projectFilePath": "C:\\Users\\denem\\OneDrive\\Masaüstü\\Dsmart Staj\\CustomerHub\\src\\CustomerHub.Web\\CustomerHub.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\denem\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
+    "C:\\Users\\denem\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "C:\\Users\\denem\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "C:\\Users\\denem\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\denem\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",
     "C:\\Users\\denem\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.11.0\\microsoft.codeanalysis.analyzers.3.11.0.nupkg.sha512",
