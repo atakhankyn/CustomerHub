@@ -46,7 +46,119 @@ public class CustomersController : Controller
 
     }
 
+    public async Task<IActionResult> Details(Guid id)
+    {
+        var customer = await _repository.GetByIdAsync(id);
+
+        if(customer == null)
+        {
+            return NotFound();
+        }
+
+        var viewModel = ToDetails(customer);
+        return View(viewModel);
+
+    }
+
+    public async Task<IActionResult> Edit(Guid id)
+    {
+        var customer = await _repository.GetByIdAsync(id);
+
+        if(customer == null)
+        {
+            return NotFound();
+        }
+
+        if(!customer.CanBeEdited())
+        {
+            return RedirectToAction(nameof(Details), new {id});
+        }
+
+        var viewModel = ToEdit(customer);
+        return View(viewModel);
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Guid id, CustomerEditViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var customer = await _repository.GetByIdAsync(id);
+
+        if(customer == null)
+        {
+            return NotFound();
+        }
+
+        if(!customer.CanBeEdited())
+        {
+            return RedirectToAction(nameof(Details), new {id});
+        }
+
+        UpdateEntity(customer, model);
+        await _repository.UpdateAsync(customer);
+
+        return RedirectToAction(nameof(Details), new { id });        
+
+    }
+
     //Helper Methods
+
+    private void UpdateEntity(Customer customer,  CustomerEditViewModel model)
+    {
+        customer.Type = model.Type;
+        customer.Name = model.Name;
+        customer.TCKNOrVKN = model.TCKNOrVKN;
+        customer.AddressCity = model.AddressCity;
+        customer.AddressLine = model.AddressLine;
+        customer.Email = model.Email;
+        customer.Phone = model.Phone;
+        customer.UpdatedAt = DateTime.UtcNow;     
+    }
+
+    private CustomerEditViewModel ToEdit(Customer customer)
+    {
+        return new CustomerEditViewModel
+        {
+        Id = customer.Id,
+        Name = customer.Name,
+        Type = customer.Type,
+        TypeText = GetTypeText(customer.Type),
+        Status = customer.Status,
+        StatusText = GetStatusText(customer.Status),
+        TCKNOrVKN = customer.TCKNOrVKN,
+        AddressCity = customer.AddressCity,
+        AddressLine = customer.AddressLine,
+        Email = customer.Email,
+        Phone = customer.Phone         
+        };
+    }
+
+    private CustomerDetailsViewModel ToDetails(Customer customer)
+    {
+        return new CustomerDetailsViewModel
+        {
+        Id = customer.Id,
+        Name = customer.Name,
+        Type = customer.Type,
+        TypeText = GetTypeText(customer.Type),
+        Status = customer.Status,
+        StatusText = GetStatusText(customer.Status),
+        StatusBadgeClass = GetBadgeClass(customer.Status),
+        TCKNOrVKN = customer.TCKNOrVKN,
+        AddressCity = customer.AddressCity,
+        AddressLine = customer.AddressLine,
+        CreatedAt = customer.CreatedAt,
+        UpdatedAt = customer.UpdatedAt,
+        CanBeEdited = customer.CanBeEdited(),
+        Email = customer.Email,
+        Phone = customer.Phone,            
+        };
+    }
 
     private Customer ToEntity(CustomerCreateViewModel model)
     {
