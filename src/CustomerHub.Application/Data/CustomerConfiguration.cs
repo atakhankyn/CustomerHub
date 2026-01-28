@@ -15,9 +15,11 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.Property(p => p.Status).HasConversion<int>();
         builder.Property(p => p.AddressCity).HasMaxLength(100);
         builder.Property(p => p.AddressLine).HasMaxLength(500);
+        builder.Property(c => c.Email).HasMaxLength(100);
+        builder.Property(c => c.Phone).HasMaxLength(20);
 
         builder.HasIndex(p => p.TCKNOrVKN).IsUnique();
         
-        builder.HasMany(c => c.Contacts).WithOne(cc => cc.Customer).HasForeignKey(cc => cc.CustomerId).OnDelete(DeleteBehavior.Cascade);
+        //builder.HasMany(c => c.Contacts).WithOne(cc => cc.Customer).HasForeignKey(cc => cc.CustomerId).OnDelete(DeleteBehavior.Cascade);
     }
 }

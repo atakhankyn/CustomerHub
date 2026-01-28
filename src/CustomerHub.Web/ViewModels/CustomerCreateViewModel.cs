@@ -5,4 +5,6 @@ public class CustomerCreateViewModel
     public string TCKNOrVKN { get; set; } = string.Empty;
     public string? AddressCity { get; set; }
     public string? AddressLine { get; set; }
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
 }

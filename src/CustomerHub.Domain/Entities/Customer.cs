@@ -9,7 +9,10 @@ public class Customer
     public string? AddressLine { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-    public ICollection<CustomerContact> Contacts { get; set; } = new List<CustomerContact>();
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
+    
+    //public ICollection<CustomerContact> Contacts { get; set; } = new List<CustomerContact>();
 
     public void Suspend()
     {
@@ -43,23 +46,23 @@ public class Customer
         return Status != CustomerStatus.Closed;
     }
 
-    public void AddContact(CustomerContact contact)
-    {
-        contact.CustomerId = Id;
-        Contacts.Add(contact);
-    }
+    // public void AddContact(CustomerContact contact)
+    // {
+    //     contact.CustomerId = Id;
+    //     Contacts.Add(contact);
+    // }
 
-    public bool RemoveContact(Guid contactId)
-    {
-        CustomerContact? contact = Contacts.FirstOrDefault(c => c.Id == contactId);
+    // public bool RemoveContact(Guid contactId)
+    // {
+    //     CustomerContact? contact = Contacts.FirstOrDefault(c => c.Id == contactId);
 
-        if(contact == null)
-        {
-            return false;
-        }
+    //     if(contact == null)
+    //     {
+    //         return false;
+    //     }
 
-        Contacts.Remove(contact);
-        return true;
-    }
+    //     Contacts.Remove(contact);
+    //     return true;
+    // }
 
 }

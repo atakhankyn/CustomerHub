@@ -15,6 +15,8 @@ public class CustomersController : Controller
         {
             Id = c.Id,
             Name = c.Name,
+            Email = c.Email,
+            Phone = c.Phone,
             TypeText = GetTypeText(c.Type),
             StatusText = GetStatusText(c.Status),
             StatusBadgeClass = GetBadgeClass(c.Status),
@@ -53,6 +55,8 @@ public class CustomersController : Controller
             Id = Guid.NewGuid(),
             Type = model.Type,
             Name = model.Name,
+            Email = model.Email,
+            Phone = model.Phone,
             TCKNOrVKN = model.TCKNOrVKN,
             AddressCity = model.AddressCity,
             AddressLine = model.AddressLine,

@@ -6,5 +6,7 @@ public class CustomerListViewModel
     public string StatusText { get; set; } = string.Empty;
     public string StatusBadgeClass { get; set; } = string.Empty;
     public string TCKNOrVKN { get; set; } = string.Empty;
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
     
 }

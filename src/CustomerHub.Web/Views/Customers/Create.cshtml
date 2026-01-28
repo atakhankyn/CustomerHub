@@ -41,6 +41,18 @@
                 <textarea asp-for="AddressLine" class="form-control" rows="3"></textarea>
             </div>
 
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">E-posta</label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Telefon</label>
+                <input asp-for="Phone" type="tel" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
             <div class="mt-4">
                 <button type="submit" class="btn btn-primary">Kaydet</button>
                 <a asp-action="Index" class="btn btn-secondary">İptal</a>
