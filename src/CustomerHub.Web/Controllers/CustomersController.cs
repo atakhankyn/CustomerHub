@@ -125,6 +125,79 @@ public class CustomersController : Controller
 
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Suspend(Guid id)
+    {
+        var customer = await _repository.GetByIdAsync(id);
+
+        if(customer == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            customer.Suspend();
+            await _repository.UpdateAsync(customer);
+            TempData["Success"] = "Müşteri başarıyla askıya alındı.";            
+        }
+        catch (InvalidOperationException ex)
+        {
+            TempData["Error"] = ex.Message;
+        }  
+
+        return RedirectToAction(nameof(Details), new { id });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Activate(Guid id)
+    {
+        var customer = await _repository.GetByIdAsync(id);
+
+        if(customer == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            customer.Activate();
+            await _repository.UpdateAsync(customer);
+            TempData["Success"] = "Müşteri başarıyla aktifleştirildi.";            
+        }
+        catch (InvalidOperationException ex)
+        {
+            TempData["Error"] = ex.Message;
+        }  
+        
+        return RedirectToAction(nameof(Details), new { id });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Close(Guid id)
+    {
+        var customer = await _repository.GetByIdAsync(id);
+
+        if(customer == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            customer.Close();
+            await _repository.UpdateAsync(customer);
+            TempData["Success"] = "Müşteri başarıyla kapatıldı.";            
+        }
+        catch (InvalidOperationException ex)
+        {
+            TempData["Error"] = ex.Message;
+        }        
+
+        return RedirectToAction(nameof(Details), new { id });
+    }
+
+
     //Helper Methods
 
     private void UpdateEntity(Customer customer,  CustomerEditViewModel model)
@@ -175,7 +248,10 @@ public class CustomersController : Controller
         UpdatedAt = customer.UpdatedAt,
         CanBeEdited = customer.CanBeEdited(),
         Email = customer.Email,
-        Phone = customer.Phone,            
+        Phone = customer.Phone,
+        CanBeSuspended = customer.Status == CustomerStatus.Active,
+        CanBeActivated = customer.Status == CustomerStatus.Suspended,
+        CanBeClosed = customer.Status != CustomerStatus.Closed            
         };
     }
 

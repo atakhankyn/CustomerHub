@@ -14,5 +14,8 @@ public class CustomerDetailsViewModel
     public string? AddressLine { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-    public bool CanBeEdited { get; set; } 
+    public bool CanBeEdited { get; set; }
+    public bool CanBeSuspended { get; set; }
+    public bool CanBeActivated { get; set; }
+    public bool CanBeClosed { get; set; }
 }

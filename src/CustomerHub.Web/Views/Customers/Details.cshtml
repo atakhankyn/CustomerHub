@@ -4,6 +4,23 @@
     ViewData["Title"] = "Müşteri Detayı";
 }
 
+<!-- TempData Mesajları -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>
         @Model.Name
@@ -14,7 +31,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <dl>
                     <dt>Müşteri Tipi</dt>
                     <dd>@Model.TypeText</dd>
@@ -27,16 +44,16 @@
 
                     <dt>Telefon</dt>
                     <dd>@(Model.Phone ?? "-")</dd>
-                    
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl>
                     <dt>Şehir</dt>
                     <dd>@(Model.AddressCity ?? "-")</dd>
 
                     <dt>Adres</dt>
                     <dd>@(Model.AddressLine ?? "-")</dd>
-                </dl>
-            </div>
-            <div class="col-md-4">
-                <dl>
+
                     <dt>Oluşturulma Tarihi</dt>
                     <dd>@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
 
@@ -48,14 +65,46 @@
     </div>
 </div>
 
-<div class="mt-4">
+<!-- Aksiyon Butonları -->
+<div class="mt-4 d-flex gap-2">
     @if (Model.CanBeEdited)
     {
         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
             Düzenle
         </a>
     }
-    <a asp-action="Index" class="btn btn-secondary">
+
+    @if (Model.CanBeSuspended)
+    {
+        <form asp-action="Suspend" asp-route-id="@Model.Id" method="post" class="d-inline"
+              onsubmit="return confirm('Bu müşteri askıya alınacak. Emin misiniz?')">
+            <button type="submit" class="btn btn-secondary">
+                Askıya Al
+            </button>
+        </form>
+    }
+
+    @if (Model.CanBeActivated)
+    {
+        <form asp-action="Activate" asp-route-id="@Model.Id" method="post" class="d-inline"
+              onsubmit="return confirm('Bu müşteri aktifleştirilecek. Emin misiniz?')">
+            <button type="submit" class="btn btn-success">
+                Aktifleştir
+            </button>
+        </form>
+    }
+
+    @if (Model.CanBeClosed)
+    {
+        <form asp-action="Close" asp-route-id="@Model.Id" method="post" class="d-inline"
+              onsubmit="return confirm('DİKKAT: Bu müşteri kalıcı olarak kapatılacak ve tekrar açılamayacak! Emin misiniz?')">
+            <button type="submit" class="btn btn-danger">
+                Kapat
+            </button>
+        </form>
+    }
+
+    <a asp-action="Index" class="btn btn-outline-secondary">
         Listeye Dön
     </a>
 </div>
