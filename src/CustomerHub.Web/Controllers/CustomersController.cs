@@ -1,11 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation;
 
 public class CustomersController : Controller
 {
     private readonly ICustomerRepository _repository;
-    public CustomersController(ICustomerRepository repository)
+    private readonly IValidator<CustomerCreateViewModel> _createValidator;
+    private readonly IValidator<CustomerEditViewModel> _editValidator;
+
+    public CustomersController(
+        ICustomerRepository repository,
+        IValidator<CustomerCreateViewModel> createValidator,
+        IValidator<CustomerEditViewModel> editValidator)
     {
         _repository = repository;
+        _createValidator = createValidator;
+        _editValidator = editValidator;
     }
 
     public async Task<IActionResult> Index()
@@ -34,16 +43,20 @@ public class CustomersController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CustomerCreateViewModel model)
     {
-        if (!ModelState.IsValid)
+        var validationResult = await _createValidator.ValidateAsync(model);
+        
+        if (!validationResult.IsValid)
         {
+            foreach (var error in validationResult.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
             return View(model);
         }
 
         var customer = ToEntity(model);
         await _repository.AddAsync(customer);
         return RedirectToAction(nameof(Index));
-
-
     }
 
     public async Task<IActionResult> Details(Guid id)
@@ -82,8 +95,14 @@ public class CustomersController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(Guid id, CustomerEditViewModel model)
     {
-        if (!ModelState.IsValid)
+        var validationResult = await _editValidator.ValidateAsync(model);
+        
+        if (!validationResult.IsValid)
         {
+            foreach (var error in validationResult.Errors)
+            {
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            }
             return View(model);
         }
 

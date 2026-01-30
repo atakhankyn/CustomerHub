@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +9,7 @@ builder.Services.AddControllersWithViews(options =>
     options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
 });
 
-// FluentValidation - Sadece FluentValidation çalışsın
-builder.Services.AddFluentValidationAutoValidation(config =>
-{
-    config.DisableDataAnnotationsValidation = true;  // Data Annotations'ı kapat
-});
+// FluentValidation - Manuel async validation kullanılıyor (controller'da ValidateAsync)
 builder.Services.AddValidatorsFromAssemblyContaining<CustomerCreateValidator>();
 
 // Veritabanı

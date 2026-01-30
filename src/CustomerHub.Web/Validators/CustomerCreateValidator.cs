@@ -1,8 +1,14 @@
+using System.ComponentModel;
+using System.Diagnostics;
 using FluentValidation;
+using Microsoft.AspNetCore.Routing.Constraints;
 public class CustomerCreateValidator : AbstractValidator<CustomerCreateViewModel>
 {
-    public CustomerCreateValidator()
+    private readonly ICustomerRepository _repository;
+    public CustomerCreateValidator(ICustomerRepository repository)
     {
+        _repository = repository;
+        
         RuleFor(x => x.Type).IsInEnum().WithMessage("Geçerli müşteri tipi seçiniz")
                             .NotEmpty().WithMessage("Bir müşteri tipi seçiniz");
 
@@ -15,6 +21,8 @@ public class CustomerCreateValidator : AbstractValidator<CustomerCreateViewModel
 
         RuleFor(x => x.TCKNOrVKN).Length(11).WithMessage("TCKN 11 haneli olmalıdır").When(x => x.Type == CustomerType.Individual && !string.IsNullOrEmpty(x.TCKNOrVKN));
         RuleFor(x => x.TCKNOrVKN).Length(10).WithMessage("VKN 10 haneli olmalıdır").When(x => x.Type == CustomerType.Business && !string.IsNullOrEmpty(x.TCKNOrVKN));
+
+        RuleFor(x => x.TCKNOrVKN).MustAsync(BeUniqueTCKN).WithMessage("Bu TCKN/VKN zaten kayıtlı").When(x => !string.IsNullOrEmpty(x.TCKNOrVKN));
 
         RuleFor(x => x)
             .Must(HaveEmailOrPhone)
@@ -33,6 +41,17 @@ public class CustomerCreateValidator : AbstractValidator<CustomerCreateViewModel
 
         RuleFor(x => x.AddressLine)
             .MaximumLength(500).WithMessage("Adres en fazla 500 karakter olabilir");                  
+    }
+
+    //Helper methods
+
+    private async Task<bool> BeUniqueTCKN(string tckn, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(tckn))
+            return true;
+
+        var exists = await _repository.ExistsWithTCKNAsync(tckn);
+        return !exists;
     }
 
     private bool BeOnlyDigits(string value)
