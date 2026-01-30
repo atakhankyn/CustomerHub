@@ -1,4 +1,4 @@
-@model List<CustomerListViewModel>
+@model CustomerIndexViewModel
 
 @{
     ViewData["Title"] = "Müşteri Listesi";
@@ -7,15 +7,64 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Müşteri Listesi</h1>
     <a asp-action="Create" class="btn btn-primary">
-        <i class="bi bi-plus-circle"></i> Yeni Müşteri
+        Yeni Müşteri
     </a>
 </div>
 
-@if (Model.Count == 0)
+<!-- Filtre Formu -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" asp-action="Index">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label">Ara</label>
+                    <input type="text" name="search" value="@Model.Search" 
+                           class="form-control" placeholder="Müşteri adı...">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Tip</label>
+                    <select name="type" class="form-select">
+                        <option value="">Tümü</option>
+                        <option value="0" selected="@(Model.Type == CustomerType.Individual)">Bireysel</option>
+                        <option value="1" selected="@(Model.Type == CustomerType.Business)">Kurumsal</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Durum</label>
+                    <select name="status" class="form-select">
+                        <option value="">Tümü</option>
+                        <option value="0" selected="@(Model.Status == CustomerStatus.Active)">Aktif</option>
+                        <option value="1" selected="@(Model.Status == CustomerStatus.Suspended)">Askıda</option>
+                        <option value="2" selected="@(Model.Status == CustomerStatus.Closed)">Kapalı</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Filtrele</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Temizle</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Sonuç Bilgisi -->
+<p class="text-muted mb-3">
+    <strong>@Model.FilteredCount</strong> / @Model.TotalCount müşteri listeleniyor
+</p>
+
+@if (Model.Customers.Count == 0)
 {
     <div class="alert alert-info">
-        <strong>Bilgi:</strong> Henüz kayıtlı müşteri bulunmamaktadır.
-        <a asp-action="Create" class="alert-link">Yeni müşteri ekleyin.</a>
+        @if (Model.TotalCount == 0)
+        {
+            <span>Henüz kayıtlı müşteri bulunmamaktadır. </span>
+            <a asp-action="Create" class="alert-link">Yeni müşteri ekleyin.</a>
+        }
+        else
+        {
+            <span>Arama kriterlerine uygun müşteri bulunamadı. </span>
+            <a asp-action="Index" class="alert-link">Filtreleri temizleyin.</a>
+        }
     </div>
 }
 else
@@ -28,13 +77,11 @@ else
                     <th>Tip</th>
                     <th>Durum</th>
                     <th>TCKN/VKN</th>
-                    <th>E-posta</th>
-                    <th>Telefon</th>
                     <th>İşlemler</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var customer in Model)
+                @foreach (var customer in Model.Customers)
                 {
                     <tr>
                         <td>@customer.Name</td>
@@ -45,25 +92,15 @@ else
                             </span>
                         </td>
                         <td>@customer.TCKNOrVKN</td>
-                        <td>@customer.Email</td>
-                        <td>@customer.Phone</td>
                         <td>
                             <a asp-action="Details" asp-route-id="@customer.Id" 
-                               class="btn btn-sm btn-info">
-                                Detay
-                            </a>
+                               class="btn btn-sm btn-info">Detay</a>
                             <a asp-action="Edit" asp-route-id="@customer.Id" 
-                               class="btn btn-sm btn-warning">
-                                Düzenle
-                            </a>
+                               class="btn btn-sm btn-warning">Düzenle</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-    
-    <p class="text-muted">
-        Toplam <strong>@Model.Count</strong> müşteri listeleniyor.
-    </p>
 }

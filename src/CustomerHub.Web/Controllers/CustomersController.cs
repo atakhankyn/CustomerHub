@@ -17,22 +17,50 @@ public class CustomersController : Controller
         _editValidator = editValidator;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? search, CustomerType? type, CustomerStatus? status)
     {
-        var customers = await _repository.GetAllAsync();
-        var viewModels = customers.Select(c => new CustomerListViewModel
-        {
-            Id = c.Id,
-            Name = c.Name,
-            Email = c.Email,
-            Phone = c.Phone,
-            TypeText = GetTypeText(c.Type),
-            StatusText = GetStatusText(c.Status),
-            StatusBadgeClass = GetBadgeClass(c.Status),
-            TCKNOrVKN = MaskTCKN(c.TCKNOrVKN),
-        }).ToList();
+        var allCustomers = await _repository.GetAllAsync();
+        var totalCount = allCustomers.Count();
 
-        return View(viewModels);
+        var filtered = allCustomers.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            filtered = filtered.Where(c => 
+                c.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (type.HasValue)
+        {
+            filtered = filtered.Where(c => c.Type == type.Value);
+        }
+
+        if (status.HasValue)
+        {
+            filtered = filtered.Where(c => c.Status == status.Value);
+        }
+
+        var filteredList = filtered.ToList();
+
+        var viewModel = new CustomerIndexViewModel
+        {
+            Search = search,
+            Type = type,
+            Status = status,
+            TotalCount = totalCount,
+            FilteredCount = filteredList.Count,
+            Customers = filteredList.Select(c => new CustomerListViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                TypeText = GetTypeText(c.Type),
+                StatusText = GetStatusText(c.Status),
+                StatusBadgeClass = GetBadgeClass(c.Status),
+                TCKNOrVKN = MaskTCKN(c.TCKNOrVKN)
+            }).ToList()
+        };
+
+        return View(viewModel);
     }
 
      public IActionResult Create()
